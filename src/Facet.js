@@ -93,7 +93,7 @@ export default function({
               {item.key} ({item.doc_count})
             </label>
           ))}
-      {data.length === size ? (
+      {seeMore !== false && data.length === size ? (
         <button onClick={() => setSize(size + (itemsPerBlock || 5))}>
           {seeMore || "see more"}
         </button>
