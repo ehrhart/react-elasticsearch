@@ -3,6 +3,7 @@ import { toTermQueries } from "./utils";
 import { useSharedContext } from "./SharedContextProvider";
 
 export default function({
+  customQuery,
   fields,
   id,
   initialValue,
@@ -34,7 +35,7 @@ export default function({
       needsConfiguration: true,
       isFacet: true,
       wantResults: false,
-      query: { bool: { should: toTermQueries(fields, value) } },
+      query: customQuery ? customQuery(fields, value) : { bool: { should: toTermQueries(fields, value) } },
       value,
       configuration: { size, filterValue, fields, filterValueModifier },
       result: data && total ? { data, total } : null
